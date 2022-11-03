@@ -1,0 +1,10 @@
+body{
+    background-color: aliceblue;
+}
+
+header, footer{
+    display: block;
+    background-color: indigo;
+    text-align: center;
+    color: white;
+}
