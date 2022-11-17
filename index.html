@@ -20,26 +20,43 @@
         <!-- SEARCH COLUMN -->
         <div class="search column left">
             <h2>Basic Song Search</h2>
-  
 
-            <input type="radio" title="title"><label>Title</label><input type="text" title="title">
-            <input type="radio" title="artist"><label>Artist</label><input type="text" title="artist">
-            <input type="radio" title="genre"><input type="radio" title="genre"><label>Genre</label>
+            <div class="input"> 
+                <input type="radio" title="title"><label class="label">Title</label><input type="text" title="title"> <br>
+                <input type="radio" title="artist"><label class="label">Artist</label><input type="text" title="artist"> <br>
+                <input type="radio" title="genre"><label class="label">Genre</label> <input type="text" title="genre"><br>
+            </div> <br>
+    
 
             <!-- Year scale -->
-            <input type="radio" title="year"><label>Year</label>
-            <label>From</label><input type="text" title="year-from">
-            <label>To</label><input type="text" title="year-to">
+            <div class="year">
+                <input type="radio" title="year" class="year"><label>Year</label> 
+            </div>
+            <div class="year scale">
+                <label>From</label><input type="text" title="year-from" class="scale"> 
+                <label>To</label><input type="text" title="year-to" class="scale"> 
+            </div>
+            
 
             <!-- Popularity Scale -->
-            <input type="radio" title="year"><label>Popularity</label>
-            <label>From</label><input type="text" title="popularity-from">
-            <label>To</label><input type="text" title="popularity-to">
+            <div class="popularity">
+                <input type="radio" title="popularity"><label>Popularity</label>
+            </div>
+            <div class="popularity scale">
+                <label>From</label><input type="text" title="popularity-from" class="scale">
+                <label>To</label><input type="text" title="popularity-to" class="scale">
+            </div>
+
+            <div>
+                <button>Search</button>
+                <button>Clear</button>
+            </div>
+            
         </div>
 
         <!-- RESULT COLUMN -->
         <div class="result column right">
-            <h2>Browse / Serach Results</h2>
+            <h2>Browse / Search Results</h2>
             <div class="label">
                 <h3>Title</h3>
                 <h3>Artist</h3>

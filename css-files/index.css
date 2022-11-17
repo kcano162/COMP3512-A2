@@ -1,5 +1,6 @@
 body{
     background-color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 header, footer{
@@ -7,6 +8,8 @@ header, footer{
     background-color: cadetblue;
     width: 100%;
     text-align: center;
+    position: fixed;
+    bottom: 0;
 }
 
 .child{
@@ -15,24 +18,59 @@ header, footer{
 }
 
 .column{float: left;}
-.left{ width: 30% }
-.right{width:70%}
-.column{text-align: center;}
+.left{
+    display: grid;
+    width: 30%;
 
-footer{
-    position: fixed;
-    bottom: 0;
 }
+
+
+.right{width:70%;}
+.column{text-align: center;}
 
 
 .label h3{
     display: inline-block;
-    padding: 30px;
     margin-top: -30px;
 }
 
-input{
-    margin: 15px;
+#add{visibility: hidden;}
+
+
+.input input[type=text], .scale{
+    display: inline-block;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px;
+    width: 150px;
+    padding: 5px;
 }
 
-#add{visibility: hidden;}
+
+.year, .popularity{
+    display: inline;
+    text-align: left;
+}
+
+.scale input[type=text], .scale label{
+    margin-left: 100px;
+}
+.scale{
+    width: 50px;
+    right: 10px;
+}
+
+.popularity .scale, .year .scale{
+    text-align: right;
+}
+
+button{
+    padding:8px 20px;
+    border-radius: 5px;
+}
+
+.result h3{
+    padding: 10px 40px;
+    text-align: center;
+}
+
