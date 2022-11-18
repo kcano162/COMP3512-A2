@@ -37,7 +37,7 @@ header, footer{
 #add{visibility: hidden;}
 
 
-.input input[type=text], .scale{
+.input input[type=text], .scale, select{
     display: inline-block;
     position: relative;
     border-radius: 10px;
@@ -72,5 +72,12 @@ button{
 .result h3{
     padding: 10px 40px;
     text-align: center;
+}
+
+table{
+    width: 800px;
+}
+th{
+    height: 100px;
 }
 

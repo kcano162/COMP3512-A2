@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css-files/index.css">
+    <script src="JSON-files/artists.json"></script>
+    <script src="JSON-files/genres.json"></script>
+    <script src="JSON-files/sample-songs.json"></script>
+    <script src="js-files/browser-search.js"></script>
+    <script src="js-files/assign2.js"></script>
     <title>Browse / Search Results</title>
 </head>
 <body>
@@ -23,29 +28,35 @@
 
             <div class="input"> 
                 <input type="radio" title="title"><label class="label">Title</label><input type="text" title="title"> <br>
-                <input type="radio" title="artist"><label class="label">Artist</label><input type="text" title="artist"> <br>
-                <input type="radio" title="genre"><label class="label">Genre</label> <input type="text" title="genre"><br>
+                <input type="radio" title="artist"><label class="label">Artist</label>
+                <select title="artist" class="artists">
+                    <option value="" disable selected hidden>Select An Artist</option>
+                </select> <br>
+                <input type="radio" title="genre"><label class="label">Genre</label>
+                <select title="genre" class="genres">
+                    <option value="" disabled selected hidden> Select A Genre</option>
+                </select><br>
             </div> <br>
     
 
             <!-- Year scale -->
-            <div class="year">
+            <!-- <div class="year">
                 <input type="radio" title="year" class="year"><label>Year</label> 
             </div>
             <div class="year scale">
                 <label>From</label><input type="text" title="year-from" class="scale"> 
                 <label>To</label><input type="text" title="year-to" class="scale"> 
-            </div>
+            </div> -->
             
 
             <!-- Popularity Scale -->
-            <div class="popularity">
+            <!-- <div class="popularity">
                 <input type="radio" title="popularity"><label>Popularity</label>
             </div>
             <div class="popularity scale">
                 <label>From</label><input type="text" title="popularity-from" class="scale">
                 <label>To</label><input type="text" title="popularity-to" class="scale">
-            </div>
+            </div> -->
 
             <div>
                 <button>Search</button>
@@ -57,14 +68,17 @@
         <!-- RESULT COLUMN -->
         <div class="result column right">
             <h2>Browse / Search Results</h2>
-            <div class="label">
-                <h3>Title</h3>
-                <h3>Artist</h3>
-                <h3>Year</h3>
-                <h3>Genre</h3>
-                <h3>Popularity</h3>
-                <h3 id="add">Add (disable in css)</h3>
-            </div>
+
+            <table class="tbl" >
+                <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Year</th>
+                    <th>Genre</th>
+                    <th>Popularity</th>
+                    <th></th>
+                </tr>
+            </table>
             
 
         </div>
