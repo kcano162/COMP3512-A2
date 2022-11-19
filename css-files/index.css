@@ -67,6 +67,11 @@ header, footer{
 button{
     padding:8px 20px;
     border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+select{
+    font-family:'Courier New', Courier, monospace;
 }
 
 .result h3{
@@ -75,7 +80,7 @@ button{
 }
 
 table{
-    width: 800px;
+    width: 1000px;
 }
 th{
     height: 100px;
