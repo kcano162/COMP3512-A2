@@ -79,5 +79,23 @@ table{
 }
 th{
     height: 100px;
+    font-weight: bolder;
+    font-size: large;
 }
+
+td{padding: 10px;}
+
+.songInfo{display: none;}
+/* .search-browse{display: none;} */
+
+.analysis{
+
+
+}
+
+.analysis ul{
+    list-style-type: none;
+    color: white;
+}
+
 

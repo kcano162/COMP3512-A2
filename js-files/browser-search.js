@@ -7,15 +7,52 @@ const genreList = JSON.parse(genres);
 console.dir(genreList);
 
 const songList = JSON.parse(songs);
+console.dir(songList);
+
+
+/* url of song api --- https versions hopefully a little later this semester */	
+const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
+//requesting data from api
+
 
 
 
 document.addEventListener("DOMContentLoaded", function(){
     const selectArtists = document.querySelector(".artists");
     const selectGenres = document.querySelector(".genres");
-    const table = document.querySelector(".tbl");
+
+    //Lab 10 labs
+// fetch(api)
+// .then( (resp) => resp.json())
+// .then( data => {
+//     const table = document.querySelector(".tbl");
+//     for(let song of data){
+//         const tr = document.createElement("tr");
+//         let title = document.createElement("td");
+//         let artist = document.createElement("td");
+//         let year = document.createElement("td");
+//         let genre = document.createElement("td");
+//         let popularity = document.createElement("td");
+
+//         title.textContent = `${song.title}`;
+//         artist.textContent = `${song.artist.name}`;
+//         year.textContent = `${song.year}`;
+//         genre.textContent = `${song.genre.name}`;
+//         popularity.textContent = `${song.details.popularity}`;
+//         table.appendChild(tr);
+//         tr.appendChild(title);
+//         tr.appendChild(artist);
+//         tr.appendChild(year);
+//         tr.appendChild(genre);
+//         tr.appendChild(popularity);
+//     }
+
+// })
+
+
 
     //populate the table
+        const table = document.querySelector(".tbl");
 
         for(let song of songList){
             const tr = document.createElement("tr");
@@ -25,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(){
             let genre = document.createElement("td");
             let popularity = document.createElement("td");
 
-            title.textContent = `${song.title}`;
+            title.innerHTML = `<a href="">${song.title}</a>`;
             artist.textContent = `${song.artist.name}`;
             year.textContent = `${song.year}`;
             genre.textContent = `${song.genre.name}`;
@@ -36,12 +73,7 @@ document.addEventListener("DOMContentLoaded", function(){
             tr.appendChild(year);
             tr.appendChild(genre);
             tr.appendChild(popularity);
-
-
         }
-
-
-
 
 
     // populate select of artist
@@ -61,6 +93,20 @@ document.addEventListener("DOMContentLoaded", function(){
 
         selectGenres.appendChild(option);
     }
+
+    //eventListener for the singleSong view
+        let click =    document.querySelector(".tbl td a");
+        
+        click.addEventListener("click", function(e){
+        document.querySelector(".songInfo").style.display= "block";
+        document.querySelector(".search-browse").style.display = "none";
+
+        const ul = document.querySelector(".analysis ul");
+        const li = document.createElement("li");
+        let songTitle = document.createElement(e.target.title);
+
+
+    });
 
 
 });

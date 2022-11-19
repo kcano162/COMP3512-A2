@@ -14,6 +14,7 @@
 </head>
 <body>
 
+    <!-- BROWSE/SEARCH VIEW -->
     <article class="search-browse view">
         <header class="parent">
             <div class="child"><h2>Header</h2></div>
@@ -22,7 +23,7 @@
             <h3 class="child"><a href="">Credits</a> </h3>
         </header>
 
-        <!-- SEARCH COLUMN -->
+        <!-- search column -->
         <div class="search column left">
             <h2>Basic Song Search</h2>
 
@@ -37,26 +38,6 @@
                     <option value="" disabled selected hidden> Select A Genre</option>
                 </select><br>
             </div> <br>
-    
-
-            <!-- Year scale -->
-            <!-- <div class="year">
-                <input type="radio" title="year" class="year"><label>Year</label> 
-            </div>
-            <div class="year scale">
-                <label>From</label><input type="text" title="year-from" class="scale"> 
-                <label>To</label><input type="text" title="year-to" class="scale"> 
-            </div> -->
-            
-
-            <!-- Popularity Scale -->
-            <!-- <div class="popularity">
-                <input type="radio" title="popularity"><label>Popularity</label>
-            </div>
-            <div class="popularity scale">
-                <label>From</label><input type="text" title="popularity-from" class="scale">
-                <label>To</label><input type="text" title="popularity-to" class="scale">
-            </div> -->
 
             <div>
                 <button>Search</button>
@@ -65,7 +46,7 @@
             
         </div>
 
-        <!-- RESULT COLUMN -->
+        <!-- result column -->
         <div class="result column right">
             <h2>Browse / Search Results</h2>
 
@@ -78,13 +59,49 @@
                     <th>Popularity</th>
                     <th></th>
                 </tr>
+                <tr>
+                    <!-- <td><a href="">example</a></td> -->
+                </tr>
             </table>
             
 
         </div>
         <footer><h2>Footer</h2></footer>
+    </article>
 
 
+    <!-- SINGLE SONG VIEW -->
+    <article class="songInfo view">
+        <header>Header</header>
+        <div class="song-info column left">
+            <h2>Song Information</h2>
+            <div class="song-display">
+                <!-- put title, artist, artist type, genre, year, duration -->
+            </div>
+    
+            <div class="analysis">
+                <h3>Analysis Data</h3>
+                <ul>
+                    <li>Title</li>
+                    <li>Artist</li>
+                    <li>Artist Type</li>
+                    <li>Genre</li>
+                    <li>Year</li>
+                    <li>Duration</li>
+                </ul>
+            </div>
+        </article>
+    
+        <div class="radar column right">
+            <h2>Radar</h2>
+            <div ></div>
+            <!-- chart attach her -->
+    
+        </article>
+    
+        <footer>
+            <h2>Footer</h2>
+        </footer>
     </article>
     
 </body>
