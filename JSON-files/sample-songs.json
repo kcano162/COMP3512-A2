@@ -28,14 +28,14 @@ const songs = `[{
 	{
 		"song_id": 1168,
 		"title": "Into You",
-		"year": 2016,
+		"year": 2017,
 		"artist": {
 			"id": 11,
 			"name": "Ariana Grande"
 		},
 		"genre": {
 			"id": 110,
-			"name": "dance pop"
+			"name": "rock"
 		},
 		"details": {
 			"duration": 244,

@@ -1,9 +1,7 @@
 const artistList = JSON.parse(artists);
-// test to see if artists is parsed
 console.dir(artistList);
 
 const genreList = JSON.parse(genres);
-// test to see if artists is parsed
 console.dir(genreList);
 
 const songList = JSON.parse(songs);
@@ -14,34 +12,63 @@ document.addEventListener("DOMContentLoaded", function(){
     const selectGenres = document.querySelector(".genres");
 
     //populate the table
+        // sort by column
         const table = document.querySelector(".tbl");
+        let btns = document.querySelectorAll('button');
+       
+        for(let btn of btns){
+            let sortField = btn.getAttribute("data-");
+            let sorted;
+            btn.addEventListener("click", function(){
+                switch(sortField){
+                    case "title":
+                        sorted = songList.sort( (a,b) => a[sortField] < b[sortField] ? -1:1);
+                        console.log(sortField);
+                        break; 
+                    case "genre": //
+                    case "artist": //
+                        sorted = songList.sort( (a,b) => a[sortField] > b[sortField] ? -1:1);
+                        console.log(sortField);
+                        break;
+                    case "popularity": //
+                        sorted = songList.sort( (a,b) => a[sortField] > b[sortField] ? -1:1);
+                        console.log(sortField);
+                        break;
+                    case "year":
+                        sorted = songList.sort( (a,b) => a[sortField] > b[sortField] ? -1:1);
+                        console.log(sortField);
+                        break;
+                    default:
+                        sorted = songList.sort( (a,b) => a[sortField] < b[sortField] ? -1:1);
+                }
 
-        for(let song of songList){
-            const tr = document.createElement("tr");
-            let title = document.createElement("td");
-            let artist = document.createElement("td");
-            let year = document.createElement("td");
-            let genre = document.createElement("td");
-            let popularity = document.createElement("td");
-            let btn = document.createElement("td");
+                for(let song of sorted){
+                    const tr = document.createElement("tr");
+                    let title = document.createElement("td");
+                    let artist = document.createElement("td");
+                    let year = document.createElement("td");
+                    let genre = document.createElement("td");
+                    let popularity = document.createElement("td");
+                    let btn = document.createElement("td");
 
 
-            title.innerHTML = `<a href="#">${song.title}</a>`;
-            title.setAttribute("class", "title");
-            artist.textContent = `${song.artist.name}`;
-            year.textContent = `${song.year}`;
-            genre.textContent = `${song.genre.name}`;
-            popularity.textContent = `${song.details.popularity}`;
-            btn.innerHTML = `<button>Add</button>`;
+                    title.innerHTML = `<a href="#">${song.title}</a>`;
+                    title.setAttribute("class", "title");
+                    artist.textContent = `${song.artist.name}`;
+                    year.textContent = `${song.year}`;
+                    genre.textContent = `${song.genre.name}`;
+                    popularity.textContent = `${song.details.popularity}`;
+                    btn.innerHTML = `<button>Add</button>`;
 
-            table.appendChild(tr);
-            tr.appendChild(title);
-            tr.appendChild(artist);
-            tr.appendChild(year);
-            tr.appendChild(genre);
-            tr.appendChild(popularity);
-            tr.appendChild(btn);
-
+                    tr.appendChild(title);
+                    tr.appendChild(artist);
+                    tr.appendChild(year);
+                    tr.appendChild(genre);
+                    tr.appendChild(popularity);
+                    tr.appendChild(btn);
+                    table.appendChild(tr);
+                }
+            }); 
     }
 
    const link = document.querySelectorAll(".title");
@@ -54,8 +81,6 @@ document.addEventListener("DOMContentLoaded", function(){
         document.querySelector("#liTitle").textContent = `Title: ${this.songList.title}`;
 });
    }
-        
-
 
     // populate select of artist
     for(let artist of artistList){
@@ -74,4 +99,20 @@ document.addEventListener("DOMContentLoaded", function(){
 
         selectGenres.appendChild(option);
     }
+
+    //eventListener for the singleSong view
+        let click =    document.querySelector(".tbl td a");
+        
+        click.addEventListener("click", function(e){
+        document.querySelector(".songInfo").style.display= "block";
+        document.querySelector(".search-browse").style.display = "none";
+
+        const ul = document.querySelector(".analysis ul");
+        const li = document.createElement("li");
+        let songTitle = document.createElement(e.target.title);
+
+
+    });
+
+
 });
