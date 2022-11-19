@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
     //populate the table
         // sort by column
         const table = document.querySelector(".tbl");
-        let btns = document.querySelectorAll('button');
+        let btns = document.querySelectorAll('th a');
        
         for(let btn of btns){
             let sortField = btn.getAttribute("data-");
