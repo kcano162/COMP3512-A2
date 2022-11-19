@@ -34,7 +34,7 @@ header, footer{
     margin-top: -30px;
 }
 
-#add{visibility: hidden;}
+#addBtn{visibility: hidden;}
 
 
 .input input[type=text], .scale, select{
@@ -85,17 +85,12 @@ th{
 
 td{padding: 10px;}
 
-.songInfo{display: none;}
-/* .search-browse{display: none;} */
+.songInfo, .radar h2{display:none;}
 
-.analysis{
-
-
-}
 
 .analysis ul{
     list-style-type: none;
-    color: white;
+
 }
 
 
