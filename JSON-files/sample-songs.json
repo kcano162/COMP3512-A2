@@ -31,7 +31,7 @@ const songs = `[{
 		"year": 2017,
 		"artist": {
 			"id": 11,
-			"name": "Ariana Grande"
+			"name": "Aariana Grande"
 		},
 		"genre": {
 			"id": 110,

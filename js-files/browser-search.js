@@ -16,6 +16,33 @@ document.addEventListener("DOMContentLoaded", function(){
         const table = document.querySelector(".tbl");
         let btns = document.querySelectorAll('th a');
        
+        for(let song of songList){
+            const tr = document.createElement("tr");
+            let title = document.createElement("td");
+            let artist = document.createElement("td");
+            let year = document.createElement("td");
+            let genre = document.createElement("td");
+            let popularity = document.createElement("td");
+            let btn = document.createElement("td");
+
+            tr.setAttribute("class", "addedSong");
+            title.innerHTML = `<a href="#">${song.title}</a>`;
+            title.setAttribute("class", "title");
+            artist.textContent = `${song.artist.name}`;
+            year.textContent = `${song.year}`;
+            genre.textContent = `${song.genre.name}`;
+            popularity.textContent = `${song.details.popularity}`;
+            btn.innerHTML = `<button>Add</button>`;
+
+            tr.appendChild(title);
+            tr.appendChild(artist);
+            tr.appendChild(year);
+            tr.appendChild(genre);
+            tr.appendChild(popularity);
+            tr.appendChild(btn);
+            table.appendChild(tr);
+        }
+
         for(let btn of btns){
             let sortField = btn.getAttribute("data-");
             let sorted;
@@ -23,23 +50,27 @@ document.addEventListener("DOMContentLoaded", function(){
                 switch(sortField){
                     case "title":
                         sorted = songList.sort( (a,b) => a[sortField] < b[sortField] ? -1:1);
-                        console.log(sortField);
                         break; 
-                    case "genre": //
-                    case "artist": //
-                        sorted = songList.sort( (a,b) => a[sortField] > b[sortField] ? -1:1);
+                    case "genre":
+                    case "artist":
+                        sorted = songList.sort( (a,b) => a[sortField].name < b[sortField].name ? -1:1);
                         console.log(sortField);
                         break;
-                    case "popularity": //
-                        sorted = songList.sort( (a,b) => a[sortField] > b[sortField] ? -1:1);
+                    case "popularity": 
+                        sorted = songList.sort( (a,b) => a.details[sortField] > b.details[sortField] ? -1:1);
                         console.log(sortField);
                         break;
                     case "year":
                         sorted = songList.sort( (a,b) => a[sortField] > b[sortField] ? -1:1);
-                        console.log(sortField);
                         break;
                     default:
                         sorted = songList.sort( (a,b) => a[sortField] < b[sortField] ? -1:1);
+                }
+
+                let rows = document.querySelectorAll(".addedSong");
+                
+                for(let row of rows){
+                    table.removeChild(row);
                 }
 
                 for(let song of sorted){
@@ -51,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     let popularity = document.createElement("td");
                     let btn = document.createElement("td");
 
-
+                    tr.setAttribute("class", "addedSong");
                     title.innerHTML = `<a href="#">${song.title}</a>`;
                     title.setAttribute("class", "title");
                     artist.textContent = `${song.artist.name}`;
