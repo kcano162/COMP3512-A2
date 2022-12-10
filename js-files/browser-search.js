@@ -35,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 document.querySelector(".songInfo, .radar h2").style.display = "block";
                 document.querySelector(".radar h2").style.display = "block";
                 document.querySelector(".search-browse").style.display = "none";
-        
+                document.querySelector(".playlist").style.display = "none;"
+
                 document.querySelector("#liTitle").textContent = `Title: ${this.songList.title}`;
                 });
             }
@@ -43,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function(){
             document.addEventListener("click", function(){
                 document.querySelector(".songInfo").style.display= "block";
                 document.querySelector(".search-browse").style.display = "none";
+                document.querySelector(".playlist").style.display = "none;"
+
             });
             //eventListener for the singleSong view
             let i = document.querySelectorAll(".songName");
@@ -51,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function(){
                     console.log("yes");
                     document.querySelector(".songInfo").style.display= "block";
                     document.querySelector(".search-browse").style.display = "none";
+                    document.querySelector(".playlist").style.display = "none;"
+
                     
                     const details = songList.find( s => s.title == e.target.textContent);
                     displayAnalysisData(details);
@@ -86,21 +91,14 @@ document.addEventListener("DOMContentLoaded", function(){
                  document.querySelector(".songInfo").style.display= "block";
                  document.querySelector(".search-browse").style.display = "none";
                  document.querySelector(".playlist").style.display = "none;"
+
                  
                  const details = songList.find( s => s.title == e.target.textContent);
                  displayAnalysisData(details);
              });
         });
 
-        let b = document.querySelectorAll("#addBtn");
-        b.forEach((item) => {
-            item.addEventListener("click", (e) => { 
-                document.querySelector(".songInfo").style.display= "none";
-                 document.querySelector(".search-browse").style.display = "none";
-                 document.querySelector(".playlist").style.display = "block;"
-                
-            });
-        })
+
     }
 });
 

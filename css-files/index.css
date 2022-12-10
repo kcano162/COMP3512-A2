@@ -90,7 +90,7 @@ th{
 
 td{padding: 10px;}
 
-.songInfo, .radar h2{display:none;}
+.playlist, .songInfo, .radar h2{display:none;}
 
 
 .left .analysis ul{
