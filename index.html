@@ -10,7 +10,9 @@
     <script src="JSON-files/sample-songs.json"></script>
     <script src="js-files/browser-search.js"></script>
     <script src="js-files/assign2.js"></script>
-    <title>Browse / Search Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   <title>Browse / Search Results</title>
 </head>
 <body>
 
@@ -80,22 +82,34 @@
             </div>
     
             <div class="analysis">
-                <h3>Analysis Data</h3>
+                
                 <ul>
-                    <li id="liTitle">Title</li>
-                    <li id="liArtist">Artist</li>
-                    <li id="liAType">Artist Type</li>
-                    <li id="liGenre">Genre</li>
-                    <li id="liYear">Year</li>
-                    <li id="liDuration">Duration</li>
+                    <li><b>Title: </b><span id="liTitle"></span></li>
+                    <li><b>Artist: </b><span id="liArtist"></span></li>
+                    <li><b>Type: </b><span id="liAType"></span></li>
+                    <li><b>Genre: </b><span id="liGenre"></span></li>
+                    <li><b>Year: </b><span id="liYear"></span></li>
+                    <li><b>Duration: </b><span id="liDuration"></span></li>
                 </ul>
+                <h3>Analysis Data</h3>
+                <ul class="analysis-data">
+                    <li><b>bpm: </b><span id="bpm"></span></li>
+                    <li><b>Energy: </b><span id="energy"></span></li>
+                    <li><b>Danceability: </b><span id="danceability"></span></li>
+                    <li><b>Liveness: </b><span id="liveness"></span></li>
+                    <li><b>Acousticness: </b><span id="valence"></span></li>
+                    <li><b>Speechiness: </b><span id="acousticness"></span></li>
+                    <li><b>Popularity: </b><span id="popularity"></span></li>
+                </ul>
+                
             </div>
         </div>
     
         <div class="radar column right">
             <h2>Radar</h2>
-            <div ></div>
-            <!-- chart attach her -->
+            <canvas id="radarOutput"></canvas>
+
+            <!-- chart attach here -->
     
         </div>
     

@@ -121,11 +121,49 @@ document.addEventListener("DOMContentLoaded", function(){
 function displayAnalysisData(details){
     document.querySelector("#liTitle").textContent = details.title;
     document.querySelector("#liArtist").textContent = details.artist.name;
-    document.querySelector("#liAType").textContent = genreList.type;
+
+    // //note: artist type not working 
+    document.querySelector("#liAType").textContent = artistList.type;
     document.querySelector("#liGenre").textContent = details.genre.name;
     document.querySelector("#liYear").textContent = details.year;
     let duration = details.details.duration / 60;
     document.querySelector("#liDuration").textContent = `${duration.toFixed(2)} mins`;
+
+    //Analysis Data
+    let bpm = document.querySelector("#bpm").textContent = details.details.bpm;
+    let energy = document.querySelector("#energy").textContent = details.analytics.energy;
+    let danceability = document.querySelector("#danceability").textContent = details.analytics.danceability;
+    let liveness = document.querySelector("#liveness").textContent = details.analytics.liveness;
+    let valence = document.querySelector("#valence").textContent = details.analytics.valence;
+    let acousticness = document.querySelector("#acousticness").textContent = details.analytics.acousticness;
+    let speechiness = document.querySelector("#speechiness").textContent = details.analytics.speechiness;
+    let popularity = document.querySelector("#popularity").textContent = details.details.popularity;
+
+
+    //RADAR
+    const ctx = document.querySelector('#radarOutput');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+
+            
 
 }
 

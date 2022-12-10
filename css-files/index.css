@@ -93,14 +93,19 @@ td{padding: 10px;}
 .songInfo, .radar h2{display:none;}
 
 
-.analysis ul{
+.left .analysis ul{
+    margin-left: 10px;
     list-style-type: none;
+    text-align: start;
 
 }
 
 tr a{
     padding-right: 30px;
 }
+
+p{font-weight: bold;}
+
 
 
 
