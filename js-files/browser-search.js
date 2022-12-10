@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 });
             }
         
+            document.addEventListener("click", function(){
+                document.querySelector(".songInfo").style.display= "block";
+                document.querySelector(".search-browse").style.display = "none";
+            });
             //eventListener for the singleSong view
             let i = document.querySelectorAll("td .title");
             i.forEach( (item) => {
@@ -60,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const songList = JSON.parse(localStorage.getItem("songs"));
 
         browseSearch(songList);
+        
     }
 });
 
