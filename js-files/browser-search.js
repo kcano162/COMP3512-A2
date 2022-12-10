@@ -18,26 +18,21 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     else {throw new Error("FetchFailed")};
     })
-    .then(data => {
-        
-    })
-    .catch( err => { });
+    .then( (data) => {
+        fetchedData = data;
 
-    
-});
-
-
-//MOVE TO THE FETCH FIELD
-const selectArtists = document.querySelector(".artists");
+        //MOVE TO THE FETCH FIELD
+    const selectArtists = document.querySelector(".artists");
     const selectGenres = document.querySelector(".genres");
 
     //populate the table
     // sort by column
     const tbody = document.querySelector(".tbl tbody");
     let btns = document.querySelectorAll('th a');
-       
+    
     displaySongs(songList, tbody);
 
+    //for loop the sorts the title, artist, year, genre and popularity 
     for(let btn of btns){
         let sortField = btn.getAttribute("data-");
         let sorted;
@@ -48,7 +43,7 @@ const selectArtists = document.querySelector(".artists");
                     break; 
                 case "genre":
                 case "artist":
-                      sorted = songList.sort( (a,b) => a[sortField].name < b[sortField].name ? -1:1);
+                    sorted = songList.sort( (a,b) => a[sortField].name < b[sortField].name ? -1:1);
                     console.log(sortField);
                     break;
                 case "popularity": 
@@ -74,69 +69,88 @@ const selectArtists = document.querySelector(".artists");
 
         document.querySelector("#liTitle").textContent = `Title: ${this.songList.title}`;
     });
-   }
+    }
 
     // populate select of artist and genre
     populateSelect(artistList, selectArtists);
     populateSelect(genreList, selectGenres);
 
     //eventListener for the singleSong view
-        let click =    document.querySelector(".tbl td a");
-        
-        click.addEventListener("click", function(e){
-        document.querySelector(".songInfo").style.display= "block";
-        document.querySelector(".search-browse").style.display = "none";
-
-        const ul = document.querySelector(".analysis ul");
-        const li = document.createElement("li");
-        let songTitle = document.createElement(e.target.title);
-
-
+    let i = document.querySelectoraAll("td .title");
+    i.forEach( (item) => {
+        item.addEventListener("click", (e) => {
+            document.querySelector(".songInfo").style.display= "block";
+            document.querySelector(".search-browse").style.display = "none";
+            
+            const details = fetchedData.find( s => s.title == e.target.textContent);
+            displayAnalysisData(details);
     });
 
-    /**
-     * Populate select lists
-     */
-    function populateSelect(list, select){
-        list.forEach( l => {
-            let option = document.createElement("option");
-            option.setAttribute("value", `${l.id}`);
-            option.textContent = `${l.name}`;
+});
 
-            select.appendChild(option);
-        });
-    }
 
-    /**
-     * Displaying the sorted songs into a list in the page
-     */
-    function displaySongs(list, tbody){
-        tbody.innerHTML = "";
+function displayAnalysisData(details){
+    document.querySelector("#liTitle").textContent = details.title;
+    document.querySelector("#liArtist").textContent = details.artist.name;
+    document.querySelector("#liAType").textContent = genreList.type;
+    document.querySelector("#liGenre").textContent = details.genre.name;
+    document.querySelector("#liYear").textContent = details.year;
+    let duration = details.details.duration / 60;
+    document.querySelector("#liDuration").textContent = `${duration.toFixed(2)} mins`;
 
-        list.forEach( l => {
-            const tr = document.createElement("tr");
-            const title = document.createElement("td");
-            const artist = document.createElement("td");
-            const year = document.createElement("td");
-            const genre = document.createElement("td");
-            const popularity = document.createElement("td");
-            const btn = document.createElement("td");
+}
 
-            tr.className = "songRow";
-            title.innerHTML = `<a href="#">${l.title}</a>`;
-            title.setAttribute("class", "title");
-            artist.textContent = `${l.artist.name}`;
-            year.textContent = `${l.year}`;
-            genre.textContent = `${l.genre.name}`;
-            popularity.textContent = `${l.details.popularity}`;
-            btn.innerHTML = `<button>Add</button>`;
+/**
+ * Populate select lists
+ */
+function populateSelect(list, select){
+    list.forEach( l => {
+        let option = document.createElement("option");
+        option.setAttribute("value", `${l.id}`);
+        option.textContent = `${l.name}`;
 
-            tr.appendChild(title);
-            tr.appendChild(artist);
-            tr.appendChild(year);
-            tr.appendChild(genre);
-            tr.appendChild(popularity);
-            tr.appendChild(btn);
-            tbody.appendChild(tr);
-        });
-    }
+        select.appendChild(option);
+    });
+}
+
+/**
+ * Displaying the sorted songs into a list in the page
+ */
+function displaySongs(list, tbody){
+    tbody.innerHTML = "";
+
+    list.forEach( l => {
+        const tr = document.createElement("tr");
+        const title = document.createElement("td");
+        const artist = document.createElement("td");
+        const year = document.createElement("td");
+        const genre = document.createElement("td");
+        const popularity = document.createElement("td");
+        const btn = document.createElement("td");
+
+        tr.className = "songRow";
+        title.innerHTML = `<a href="#">${l.title}</a>`;
+        title.setAttribute("class", "title");
+        artist.textContent = `${l.artist.name}`;
+        year.textContent = `${l.year}`;
+        genre.textContent = `${l.genre.name}`;
+        popularity.textContent = `${l.details.popularity}`;
+        btn.innerHTML = `<button>Add</button>`;
+
+        tr.appendChild(title);
+        tr.appendChild(artist);
+        tr.appendChild(year);
+        tr.appendChild(genre);
+        tr.appendChild(popularity);
+        tr.appendChild(btn);
+        tbody.appendChild(tr);
+    });
+}
+        
+    })
+    .catch( err => { });
+
+    
+});
+
+
