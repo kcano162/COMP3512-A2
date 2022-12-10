@@ -52,6 +52,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 });
             }
         
+            document.addEventListener("click", function(){
+                document.querySelector(".songInfo").style.display= "block";
+                document.querySelector(".search-browse").style.display = "none";
+            });
             //eventListener for the singleSong view
             let i = document.querySelectorAll(".songName");
             console.log(i);
