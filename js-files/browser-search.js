@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function(){
              document.querySelector(".songInfo, .radar h2").style.display = "block";
              document.querySelector(".radar h2").style.display = "block";
              document.querySelector(".search-browse").style.display = "none";
+             document.querySelector(".playlist").style.display = "none;"
      
              document.querySelector("#liTitle").textContent = `Title: ${this.songList.title}`;
              });
@@ -84,11 +85,22 @@ document.addEventListener("DOMContentLoaded", function(){
              item.addEventListener("click", (e) => {
                  document.querySelector(".songInfo").style.display= "block";
                  document.querySelector(".search-browse").style.display = "none";
+                 document.querySelector(".playlist").style.display = "none;"
                  
                  const details = songList.find( s => s.title == e.target.textContent);
                  displayAnalysisData(details);
              });
         });
+
+        let b = document.querySelectorAll("#addBtn");
+        b.forEach((item) => {
+            item.addEventListener("click", (e) => { 
+                document.querySelector(".songInfo").style.display= "none";
+                 document.querySelector(".search-browse").style.display = "none";
+                 document.querySelector(".playlist").style.display = "block;"
+                
+            });
+        })
     }
 });
 
@@ -100,8 +112,9 @@ function displayAnalysisData(details){
     document.querySelector("#liAType").textContent = artistList.type;
     document.querySelector("#liGenre").textContent = details.genre.name;
     document.querySelector("#liYear").textContent = details.year;
-    let duration = details.details.duration / 60;
-    document.querySelector("#liDuration").textContent = `${duration.toFixed(2)} mins`;
+    let mins = Math.floor(details.details.duration / 60);
+    let secs = details.details.duration - mins * 60;
+    document.querySelector("#liDuration").textContent = `${mins} mins and ${secs} secs`;
 
     //Analysis Data
     let bpm = document.querySelector("#bpm").textContent = details.details.bpm;
@@ -111,35 +124,44 @@ function displayAnalysisData(details){
     let valence = document.querySelector("#valence").textContent = details.analytics.valence;
     let acousticness = document.querySelector("#acousticness").textContent = details.analytics.acousticness;
     let speechiness = document.querySelector("#speechiness").textContent = details.analytics.speechiness;
-    let popularity = document.querySelector("#popularity").textContent = details.details.popularity;
+    let popularity = document.querySelector("#popularity").textContent = details.details.popularity;  
 
-
-    //RADAR
-    const ctx = document.querySelector('#radarOutput');
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-    
-
-            
-
+    displayRadar(details);
 }
+
+
+    /**
+     * 
+     * Display Radar on Single song page
+     */
+    function displayRadar(details){
+        const radar = document.querySelector('#radarOutput');
+
+        new Chart(radar, {
+        type: 'radar',
+        data: {
+            labels: ['Energy', 'Danceability', 'Liveness', 'Acousticness', 'Speechiness', 'Valence'],
+            datasets: [{
+            label: 'Song Dataset',
+            data: [
+                details.analytics.energy,
+                details.analytics.danceability,
+                details.analytics.liveness,
+                details.analytics.acousticness,
+                details.analytics.speechiness,
+                details.analytics.valence],
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+    }
 
 /**
  * Browse/Search page functions
@@ -161,8 +183,29 @@ function browseSearch(songList){
 
     // clear searched list
     clearSearch(songList, tbody);
-}
 
+    //single song view back button
+    document.querySelector("#back").addEventListener("click", function(){
+        document.querySelector(".songInfo").style.display= "none";
+        document.querySelector(".search-browse").style.display = "block";
+        document.querySelector(".playlist").style.display = "none";
+        clearSearch(songList, tbody);
+
+    })
+
+    //playlist view back button
+    document.querySelector("#closePlaylist").addEventListener("click", function(){
+        document.querySelector(".songInfo").style.display= "none";
+        document.querySelector(".search-browse").style.display = "block";
+        document.querySelector(".playlist").style.display = "none";
+        clearSearch(songList, tbody);
+
+    })
+
+    
+
+
+}
 /**
  * Populate select lists
  */
