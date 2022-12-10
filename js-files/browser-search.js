@@ -26,8 +26,20 @@ document.addEventListener("DOMContentLoaded", function(){
             const songList = JSON.parse(localStorage.getItem("songs"));
             
             /*--------------------------- Browse/Search Page -----------------------------*/
-            browseSearch();
-            
+            // populate select
+            const selectArtists = document.querySelector(".artists");
+            const selectGenres = document.querySelector(".genres");
+            populateSelect(artistList, selectArtists);
+            populateSelect(genreList, selectGenres);
+
+            // populate the table (no filter)
+            const tbody = document.querySelector(".tbl tbody");
+            displaySongs(songList, tbody);
+
+            // column sort
+            const btns = document.querySelectorAll('th a');
+            filter(songList, btns, tbody);
+
             /*--------------------------- Single Song Page-----------------------------*/
             const link = document.querySelectorAll(".title");
             for (let l of link){
@@ -41,13 +53,15 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         
             //eventListener for the singleSong view
-            let i = document.querySelectorAll("td .title");
+            let i = document.querySelectorAll(".songName");
+            console.log(i);
             i.forEach( (item) => {
                 item.addEventListener("click", (e) => {
+                    console.log("yes");
                     document.querySelector(".songInfo").style.display= "block";
                     document.querySelector(".search-browse").style.display = "none";
                     
-                    const details = fetchedData.find( s => s.title == e.target.textContent);
+                    const details = songList.find( s => s.title == e.target.textContent);
                     displayAnalysisData(details);
                 });
         
@@ -59,7 +73,44 @@ document.addEventListener("DOMContentLoaded", function(){
         // retrieve song list
         const songList = JSON.parse(localStorage.getItem("songs"));
 
-        browseSearch(songList);
+        // populate select
+        const selectArtists = document.querySelector(".artists");
+        const selectGenres = document.querySelector(".genres");
+        populateSelect(artistList, selectArtists);
+        populateSelect(genreList, selectGenres);
+
+        // populate the table (no filter)
+        const tbody = document.querySelector(".tbl tbody");
+        displaySongs(songList, tbody);
+
+        // column sort
+        const btns = document.querySelectorAll('th a');
+        filter(songList, btns, tbody);
+
+         /*--------------------------- Single Song Page-----------------------------*/
+         const link = document.querySelectorAll(".title");
+         for (let l of link){
+             l.addEventListener("click", function(e){
+             document.querySelector(".songInfo, .radar h2").style.display = "block";
+             document.querySelector(".radar h2").style.display = "block";
+             document.querySelector(".search-browse").style.display = "none";
+     
+             document.querySelector("#liTitle").textContent = `Title: ${this.songList.title}`;
+             });
+         }
+     
+         //eventListener for the singleSong view
+         let i = document.querySelectorAll(".songName");
+         i.forEach( (item) => {
+             item.addEventListener("click", (e) => {
+                 console.log("yes");
+                 document.querySelector(".songInfo").style.display= "block";
+                 document.querySelector(".search-browse").style.display = "none";
+                 
+                 const details = songList.find( s => s.title == e.target.textContent);
+                 displayAnalysisData(details);
+             });
+        });
     }
 });
 
@@ -78,19 +129,7 @@ function displayAnalysisData(details){
  * Browse/Search page functions
  */
 function browseSearch(songList){
-    // populate select
-    const selectArtists = document.querySelector(".artists");
-    const selectGenres = document.querySelector(".genres");
-    populateSelect(artistList, selectArtists);
-    populateSelect(genreList, selectGenres);
-
-    // populate the table (no filter)
-    const tbody = document.querySelector(".tbl tbody");
-    displaySongs(songList, tbody);
-
-    // column sort
-    const btns = document.querySelectorAll('th a');
-    filter(songList, btns, tbody);
+    
 }
 
 /**
@@ -123,7 +162,7 @@ function displaySongs(list, tbody){
 
         tr.className = "songRow";
         title.innerHTML = `<a href="#">${l.title}</a>`;
-        title.setAttribute("class", "title");
+        title.className = "songName";
         artist.textContent = `${l.artist.name}`;
         year.textContent = `${l.year}`;
         genre.textContent = `${l.genre.name}`;
@@ -140,6 +179,9 @@ function displaySongs(list, tbody){
     });
 }
 
+/**
+ * Filtering columns by sorting the columns
+ */
 function filter(list, btns, tbody){
     for(let btn of btns){
         let sortField = btn.getAttribute("data-");
@@ -152,11 +194,9 @@ function filter(list, btns, tbody){
                 case "genre":
                 case "artist":
                       sorted = list.sort( (a,b) => a[sortField].name < b[sortField].name ? -1:1);
-                    console.log(sortField);
                     break;
                 case "popularity": 
                     sorted = list.sort( (a,b) => a.details[sortField] > b.details[sortField] ? -1:1);
-                    console.log(sortField);
                     break;
                 case "year":
                     sorted = list.sort( (a,b) => a[sortField] > b[sortField] ? -1:1);
