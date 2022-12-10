@@ -1,3 +1,7 @@
+/* url of song api --- https versions hopefully a little later this semester */	
+const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
+
+
 const artistList = JSON.parse(artists);
 console.dir(artistList);
 
@@ -8,7 +12,23 @@ const songList = JSON.parse(songs);
 console.dir(songList);
 
 document.addEventListener("DOMContentLoaded", function(){
-    const selectArtists = document.querySelector(".artists");
+    fetch(api)
+    .then(resp => { if (resp.ok){
+        return resp.json();
+    }
+    else {throw new Error("FetchFailed")};
+    })
+    .then(data => {
+        
+    })
+    .catch( err => { });
+
+    
+});
+
+
+//MOVE TO THE FETCH FIELD
+const selectArtists = document.querySelector(".artists");
     const selectGenres = document.querySelector(".genres");
 
     //populate the table
@@ -120,4 +140,3 @@ document.addEventListener("DOMContentLoaded", function(){
             tbody.appendChild(tr);
         });
     }
-});
